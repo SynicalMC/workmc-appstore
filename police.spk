@@ -1,0 +1,44 @@
+--
+-- Sertex Application Package
+-- Built with SPK builder 1.2
+-- Fixed by Synical
+--
+{
+  files = "{\
+  [ \"main.lua\" ] = \"local w,h = term.getSize()\\\
+local function redraw()\\\
+term.setBackgroundColor(colors.white)\\\
+term.clear()\\\
+paintutils.drawLine(1,1,w,1,colors.blue)\\\
+term.setCursorPos(1,1)\\\
+term.setTextColor(colors.white)\\\
+term.write(\\\" Police App\\\")\\\
+term.setTextColor(colors.black)\\\
+term.setBackgroundColor(colors.white)\\\
+end\\\
+redraw()\\\
+term.setCursorPos(1,2)\\\
+while true do\\\
+    local x,y = term.getCursorPos()\\\
+    local inp = sPhone.read()\\\
+\\\
+    local table = {\\\
+        \\\"pull\\\",\\\
+        inp\\\
+    }\\\
+    rednet.open(\\\"back\\\")\\\
+    rednet.send(3,table,\\\"lcn\\\")\\\
+    local id, msg = rednet.receive(\\\"lcnrec\\\",1)\\\
+    print(msg)\\\
+    term.setCursorPos(1,y+2)\\\
+end\",\
+}",
+  config = "{\
+  type = \"app\",\
+  name = \"Police App\",\
+  id = \"synical.police\",\
+  author = \"Synical\",\
+  main = \"main.lua\",\
+  version = \"1.0\",\
+}",
+}
